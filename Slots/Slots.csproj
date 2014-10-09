@@ -1,0 +1,380 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0642D7D7-4B6C-4F3C-9D26-6B533B8036D7}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Slots</RootNamespace>
+    <AssemblyName>Slots</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <TypeScriptToolsVersion>1.0</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <Content Include="obj\Debug\SlotMachineAssignment2.csprojResolveAssemblyReference.cache" />
+    <Content Include="Scripts\app.js.map" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\.gitignore" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\build\config.json" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\build\createjsTheme\layouts\main.handlebars" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\build\createjsTheme\layouts\xhr.handlebars" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\build\createjsTheme\partials\attrs.handlebars" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\build\createjsTheme\partials\classes.handlebars" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\build\createjsTheme\partials\events.handlebars" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\build\createjsTheme\partials\files.handlebars" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\build\createjsTheme\partials\index.handlebars" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\build\createjsTheme\partials\method.handlebars" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\build\createjsTheme\partials\module.handlebars" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\build\createjsTheme\partials\options.handlebars" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\build\createjsTheme\partials\props.handlebars" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\build\createjsTheme\partials\sidebar.handlebars" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\build\createjsTheme\theme.json" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\build\LICENSE" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\build\package.json" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\build\README.md" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\docs\EaselJS_docs-0.7.1.zip" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\docs\easeljs_docs-NEXT.zip" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\18-machinae_supremacy-lord_krutors_dominion.ogg" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\Game-Break.ogg" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\Game-Death.ogg" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\Game-Shot.ogg" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\Game-Spawn.ogg" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\hacked.json" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\runningGrant.json" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\README.md" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\tools\google-closure\COPYING" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\tools\google-closure\README" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\tutorials\Fonts\assets\Dorsa-Regular.ttf" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\tutorials\_shared\SyntaxHighlighter\MIT-LICENSE" />
+    <Content Include="Scripts\main.js.map" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="css\main.css" />
+    <Content Include="img\banana.jpg" />
+    <Content Include="img\bar.jpg" />
+    <Content Include="img\bell.jpg" />
+    <Content Include="img\betmaxbutton.png" />
+    <Content Include="img\betonebutton.png" />
+    <Content Include="img\cherries.jpg" />
+    <Content Include="img\grape.jpg" />
+    <Content Include="img\orange.jpg" />
+    <Content Include="img\reel.jpg" />
+    <Content Include="img\resetbutton.png" />
+    <Content Include="img\seven.jpg" />
+    <Content Include="img\slotmachineUI.jpg" />
+    <Content Include="img\spinbutton.png" />
+    <Content Include="index.html" />
+    <Content Include="obj\Debug\SlotMachineAssignment2.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\SlotMachineAssignment2.dll" />
+    <Content Include="obj\Debug\SlotMachineAssignment2.pdb" />
+    <Content Include="packages.config" />
+    <None Include="Scripts\jquery-2.1.1.intellisense.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\build\createjsTheme\assets\css\main.css" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\build\createjsTheme\assets\css\yui-cssgrids-min.css" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\build\createjsTheme\assets\docs-icon-EaselJS.png" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\build\createjsTheme\assets\favicon.ico" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\build\createjsTheme\assets\js\yui-source.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\build\Gruntfile.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\build\path.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\build\tasks\updateversion.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\AlphaMaskReveal.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\APITest.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\18-machinae_supremacy-lord_krutors_dominion.mp3" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\AlphaMaskImage.png" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\bionic.mp3" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\BitmapFont.png" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\css\dark-hive\images\ui-bg_flat_30_cccccc_40x100.png" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\css\dark-hive\images\ui-bg_flat_50_5c5c5c_40x100.png" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\css\dark-hive\images\ui-bg_glass_40_ffc73d_1x400.png" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\css\dark-hive\images\ui-bg_highlight-hard_20_0972a5_1x100.png" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\css\dark-hive\images\ui-bg_highlight-soft_33_003147_1x100.png" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\css\dark-hive\images\ui-bg_highlight-soft_35_222222_1x100.png" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\css\dark-hive\images\ui-bg_highlight-soft_44_444444_1x100.png" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\css\dark-hive\images\ui-bg_highlight-soft_80_eeeeee_1x100.png" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\css\dark-hive\images\ui-bg_loop_25_000000_21x21.png" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\css\dark-hive\images\ui-icons_222222_256x240.png" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\css\dark-hive\images\ui-icons_4b8e0b_256x240.png" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\css\dark-hive\images\ui-icons_a83300_256x240.png" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\css\dark-hive\images\ui-icons_cccccc_256x240.png" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\css\dark-hive\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\css\dark-hive\jquery-ui-1.8.18.custom.css" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\daisy.png" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\DelayedCall.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\demoStyles.css" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\flashplugin-NEXT.min.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\flowers.jpg" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\flowers_small.jpg" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\Game-Break.mp3" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\Game-Death.mp3" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\Game-Shot.mp3" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\Game-Spawn.mp3" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\ground.png" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\hacked.png" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\icons.png" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\image_1_1.png" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\image_1_2.png" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\image_1_3.png" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\image_1_4.png" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\loader.gif" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\parallaxHill1.png" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\parallaxHill2.png" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\photo-hires.jpg" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\photo.jpg" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\preloadjs-NEXT.min.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\rainbow-custom.min.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\rotateDemoBot.png" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\runningGrant.png" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\runningGrantSmall.png" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\Segment.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\Ship.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\sky.png" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\soundjs-NEXT.min.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\SpaceRock.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\sparkle_21x23.png" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\StringUtils.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\testSeq.png" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\tricolore.css" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\assets\tweenjs-NEXT.min.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\BarGraph.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\BitmapAnimation.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\BitmapText.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\Cache.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\Cache_update.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\Cache_vday.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\CurveTo.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\DoubleClickTest.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\DragAndDrop.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\DragAndDrop_hitArea.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\EventBubbling.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\ExtractFrame.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\Filters.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\Filters_input.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\Filters_simple.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\Game.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\GlobalToLocal1.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\GlobalToLocal2.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\GraphicsReuse.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\GraphicsTest.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\GraphicsTestTiny.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\Graphics_inject.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\Graphics_simple.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\Graphics_winding.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\HelloWorld.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\HtmlElements.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\Icons.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\js\SimpleScroller.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\LocalToGlobal.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\Masks.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\MovieClip.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\RollOverMouseOver.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\Segments.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\Sparkles.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\SparklesFade.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\SpriteSheet.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\SpriteSheetBuilder.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\SpriteSheetBuilderMC\gunnertron_g.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\SpriteSheetBuilderMC\SpriteSheetBuilder_MovieClip.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\SpriteSheet_simple.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\Text_links.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\Text_multiline.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\Text_simple.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\Transform.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\Transform_simple.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\examples\TwoStages.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\lib\easeljs-0.7.1.min.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\lib\easeljs-NEXT.min.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\lib\movieclip-0.7.1.min.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\lib\movieclip-NEXT.min.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\lib\README.txt" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\README_CREATEJS_NAMESPACE.txt" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\README_SECURITY_ERROR.txt" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\src\createjs\events\Event.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\src\createjs\events\EventDispatcher.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\src\createjs\utils\IndexOf.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\src\easeljs\display\Bitmap.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\src\easeljs\display\BitmapAnimation.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\src\easeljs\display\BitmapText.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\src\easeljs\display\Container.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\src\easeljs\display\DisplayObject.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\src\easeljs\display\DOMElement.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\src\easeljs\display\Graphics.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\src\easeljs\display\MovieClip.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\src\easeljs\display\Shadow.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\src\easeljs\display\Shape.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\src\easeljs\display\Sprite.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\src\easeljs\display\SpriteSheet.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\src\easeljs\display\Stage.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\src\easeljs\display\Text.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\src\easeljs\events\MouseEvent.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\src\easeljs\filters\AlphaMapFilter.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\src\easeljs\filters\AlphaMaskFilter.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\src\easeljs\filters\BlurFilter.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\src\easeljs\filters\ColorFilter.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\src\easeljs\filters\ColorMatrix.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\src\easeljs\filters\ColorMatrixFilter.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\src\easeljs\filters\Filter.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\src\easeljs\geom\Matrix2D.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\src\easeljs\geom\Point.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\src\easeljs\geom\Rectangle.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\src\easeljs\ui\ButtonHelper.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\src\easeljs\ui\Touch.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\src\easeljs\utils\SpriteSheetBuilder.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\src\easeljs\utils\SpriteSheetUtils.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\src\easeljs\utils\Ticker.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\src\easeljs\utils\UID.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\src\easeljs\version.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\src\easeljs\version_movieclip.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\tools\7z920.exe" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\tools\google-closure\compiler.jar" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\tools\README.txt" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\tutorials\Animation and Ticker\index.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\tutorials\Animation and Ticker\onTick.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\tutorials\Animation and Ticker\pausing.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\tutorials\Animation and Ticker\simple.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\tutorials\Animation and Ticker\timeBased.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\tutorials\Fonts\assets\Dorsa.png" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\tutorials\Fonts\assets\DorsaPreview.png" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\tutorials\Fonts\assets\FontCollection.png" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\tutorials\Fonts\assets\OFL.txt" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\tutorials\Fonts\GoogleWebFont.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\tutorials\Fonts\helloworld.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\tutorials\Fonts\index.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\tutorials\Getting Started\demo.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\tutorials\Getting Started\index.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\tutorials\HitTest\globalToLocal.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\tutorials\HitTest\hitTest.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\tutorials\HitTest\index.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\tutorials\HitTest\localToLocal.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\tutorials\Inheritance\Button.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\tutorials\Inheritance\demo.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\tutorials\Inheritance\index.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\tutorials\Mouse Interaction\basic.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\tutorials\Mouse Interaction\bubbling.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\tutorials\Mouse Interaction\drag.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\tutorials\Mouse Interaction\events.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\tutorials\Mouse Interaction\hitArea.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\tutorials\Mouse Interaction\index.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\tutorials\Mouse Interaction\stage.html" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\tutorials\_shared\demo.css" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\tutorials\_shared\SyntaxHighlighter\shBrushJScript.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\tutorials\_shared\SyntaxHighlighter\shBrushXml.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\tutorials\_shared\SyntaxHighlighter\shCore.css" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\tutorials\_shared\SyntaxHighlighter\shCore.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\tutorials\_shared\SyntaxHighlighter\shThemeCreateJS.css" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\tutorials\_shared\SyntaxHighlighter\shThemeDefault.css" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\tutorials\_shared\SyntaxHighlighter\shThemeEclipse.css" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\tutorials\_shared\tutorial.css" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\tutorials\_shared\tutorial.js" />
+    <Content Include="Scripts\EaselJS-release_v0.7.1\VERSIONS.txt" />
+    <Content Include="Scripts\jquery-2.1.1.js" />
+    <Content Include="Scripts\jquery-2.1.1.min.js" />
+    <Content Include="Scripts\main.js" />
+    <None Include="Scripts\_references.js" />
+    <Content Include="Web.config" />
+    <Content Include="Scripts\jquery-2.1.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\main.ts" />
+    <TypeScriptCompile Include="Scripts\typings\createjs-lib\createjs-lib.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\easeljs\easeljs.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\tweenjs\tweenjs.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="obj\Debug\TempPE\" />
+    <Folder Include="Service References\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>49925</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:49925/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

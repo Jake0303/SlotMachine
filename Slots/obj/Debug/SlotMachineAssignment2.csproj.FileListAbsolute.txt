@@ -1,0 +1,6 @@
+C:\Users\Jacob\documents\visual studio 2013\Projects\SlotMachineAssignment2\SlotMachineAssignment2\bin\SlotMachineAssignment2.dll.config
+C:\Users\Jacob\documents\visual studio 2013\Projects\SlotMachineAssignment2\SlotMachineAssignment2\bin\SlotMachineAssignment2.dll
+C:\Users\Jacob\documents\visual studio 2013\Projects\SlotMachineAssignment2\SlotMachineAssignment2\bin\SlotMachineAssignment2.pdb
+C:\Users\Jacob\documents\visual studio 2013\Projects\SlotMachineAssignment2\SlotMachineAssignment2\obj\Debug\SlotMachineAssignment2.csprojResolveAssemblyReference.cache
+C:\Users\Jacob\documents\visual studio 2013\Projects\SlotMachineAssignment2\SlotMachineAssignment2\obj\Debug\SlotMachineAssignment2.dll
+C:\Users\Jacob\documents\visual studio 2013\Projects\SlotMachineAssignment2\SlotMachineAssignment2\obj\Debug\SlotMachineAssignment2.pdb
