@@ -1,2 +1,5 @@
-﻿body {
+﻿#closeButton
+{
+    position:absolute;
+    margin-left:423px;
 }

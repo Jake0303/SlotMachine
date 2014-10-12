@@ -43,6 +43,11 @@ var grapeImage = [new createjs.Bitmap("./img/grape.jpg"), new createjs.Bitmap(".
 var orangeImage = [new createjs.Bitmap("./img/orange.jpg"), new createjs.Bitmap("./img/orange.jpg"), new createjs.Bitmap("./img/orange.jpg")];
 var sevenImage = [new createjs.Bitmap("./img/seven.jpg"), new createjs.Bitmap("./img/seven.jpg"), new createjs.Bitmap("./img/seven.jpg")];
 
+var displayBet = new createjs.Text("Bet:" + playerBet, "16px Arial", "#ff7700");
+var displayMoney = new createjs.Text("Cash:" + playerMoney, "16px Arial", "#ff7700");
+var displayWins = new createjs.Text("Wins:" + winNumber, "16px Arial", "#ff7700");
+var displayLosses = new createjs.Text("Losses:" + lossNumber, "16px Arial", "#ff7700");
+var displayJackpot = new createjs.Text("Jackpot:" + jackpot, "16px Arial", "#ff7700");
 
 
 var clickedBetMax = false, clickedBetOne = false, clickedReset = false, clickedSpin = false;
@@ -76,6 +81,26 @@ function init() {
     stage.addChild(reel1);
     stage.addChild(reel2);
     stage.addChild(reel3);
+    stage.addChild(displayBet);
+    stage.addChild(displayMoney);
+    stage.addChild(displayWins);
+    stage.addChild(displayLosses);
+    stage.addChild(displayJackpot);
+
+    displayBet.x = 60;
+    displayBet.y = 80;
+
+    displayMoney.x = 275;
+    displayMoney.y = 80;
+
+    displayWins.x = 60;
+    displayWins.y = 100;
+
+    displayLosses.x = 275;
+    displayLosses.y = 100;
+
+    displayJackpot.x = 170;
+    displayJackpot.y = 125;
 
     reel1.x = 60;
     reel1.y = 225;
@@ -138,6 +163,19 @@ function init() {
         stage.update();
     });
     resetButton.addEventListener("click", function () {
+        resetAll();
+        stage.addChild(reel1);
+        stage.addChild(reel2);
+        stage.addChild(reel3);
+
+        reel1.x = 60;
+        reel1.y = 225;
+
+        reel2.x = 170;
+        reel2.y = 225;
+
+        reel3.x = 280;
+        reel3.y = 225;
         stage.removeChild(resetButton);
         stage.addChild(resetClick);
         resetClick.x = 50;
@@ -193,6 +231,7 @@ function init() {
             alert('You cannot bet more than what you have');
         }
     });
+    
 }
 
 function handleClick() {
@@ -211,13 +250,26 @@ function handleClick() {
 }
 
 function handleTick() {
+    
+    displayBet.text = "Bet:" + playerBet;
+    displayMoney.text = "Cash:" + playerMoney;
+    displayWins.text = "Wins:" + winNumber;
+    displayLosses.text = "Losses:" + lossNumber;
+    displayJackpot.text = "Jackpot:" + jackpot;
+
     if (playerBet > 0 && playerMoney > 0) {
         spinButton.addEventListener("click", handleClick);
     }
-    else {
+    else if (playerMoney <= 0) {
+        playerMoney = 0;
         document.body.style.cursor = 'not-allowed';
         stage.canvas.title = 'Your have no money! Click reset or exit the game.';
         spinButton.removeEventListener("click", handleClick);
+    }
+    if (playerBet <= 0)
+    {
+        spinButton.removeEventListener("click", handleClick);
+
     }
 
     if (clickedSpin) {
@@ -289,6 +341,8 @@ function resetFruitTally() {
     bells = 0;
     sevens = 0;
     blanks = 0;
+    clickedBetMax = false, clickedBetOne = false, clickedReset = false, clickedSpin = false;
+    timer = 0;
 }
 
 /* Utility function to reset the player stats */
@@ -620,3 +674,11 @@ $("#spinButton").click(function () {
     }
 
 });
+
+function endGame()
+{
+    
+    stage.removeAllChildren();
+    
+    
+}

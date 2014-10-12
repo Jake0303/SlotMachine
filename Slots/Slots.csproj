@@ -59,9 +59,11 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="fonts\font.png" />
     <Content Include="img\bar.jpg" />
     <Content Include="img\betmaxglossy.png" />
     <Content Include="img\betoneglossy.png" />
+    <Content Include="img\close.png" />
     <Content Include="img\resetglossy.png" />
     <Content Include="img\spinglossy.png" />
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
@@ -101,6 +103,7 @@
     <Content Include="Scripts\EaselJS-release_v0.7.1\tutorials\_shared\SyntaxHighlighter\MIT-LICENSE" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\main.js.map" />
+    <Content Include="fonts\advanced_pixel_lcd-7.ttf" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
