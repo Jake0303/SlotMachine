@@ -35,13 +35,13 @@ var reel1 = new createjs.Bitmap("./img/reel.jpg");
 var reel2 = new createjs.Bitmap("./img/reel.jpg");
 var reel3 = new createjs.Bitmap("./img/reel.jpg");
 
-var bananaImage = new createjs.Bitmap("./img/banana.jpg");
-var barImage = new createjs.Bitmap("./img/bar.jpg");
-var bellImage = new createjs.Bitmap("./img/bell.jpg");
-var cherryImage = new createjs.Bitmap("./img/cherries.jpg");
-var grapeImage = new createjs.Bitmap("./img/grape.jpg");
-var orangeImage = new createjs.Bitmap("./img/orange.jpg");
-var sevenImage = new createjs.Bitmap("./img/seven.jpg");
+var bananaImage = [new createjs.Bitmap("./img/banana.jpg"), new createjs.Bitmap("./img/banana.jpg"), new createjs.Bitmap("./img/banana.jpg")];
+var barImage = [new createjs.Bitmap("./img/bar.jpg"), new createjs.Bitmap("./img/bar.jpg"), new createjs.Bitmap("./img/bar.jpg")];
+var bellImage = [new createjs.Bitmap("./img/bell.jpg"), new createjs.Bitmap("./img/bell.jpg"), new createjs.Bitmap("./img/bell.jpg")];
+var cherryImage = [new createjs.Bitmap("./img/cherries.jpg"), new createjs.Bitmap("./img/cherries.jpg"), new createjs.Bitmap("./img/cherries.jpg")];
+var grapeImage = [new createjs.Bitmap("./img/grape.jpg"), new createjs.Bitmap("./img/grape.jpg"), new createjs.Bitmap("./img/grape.jpg")];
+var orangeImage = [new createjs.Bitmap("./img/orange.jpg"), new createjs.Bitmap("./img/orange.jpg"), new createjs.Bitmap("./img/orange.jpg")];
+var sevenImage = [new createjs.Bitmap("./img/seven.jpg"), new createjs.Bitmap("./img/seven.jpg"), new createjs.Bitmap("./img/seven.jpg")];
 
 
 
@@ -49,8 +49,25 @@ var clickedBetMax = false, clickedBetOne = false, clickedReset = false, clickedS
 var timer = 0;
 
 function init() {
+    for (var i = 0; i < 3; i++) {
+        grapeImage[i].scaleX = 0.8;
+        grapeImage[i].scaleY = 0.8;
+        cherryImage[i].scaleX = 0.8;
+        cherryImage[i].scaleY = 0.8;
+        bananaImage[i].scaleX = 0.8;
+        bananaImage[i].scaleY = 0.8;
+        barImage[i].scaleX = 0.8;
+        barImage[i].scaleY = 0.8;
+        sevenImage[i].scaleX = 0.8;
+        sevenImage[i].scaleY = 0.8;
+        bellImage[i].scaleX = 0.8;
+        bellImage[i].scaleY = 0.8;
+        orangeImage[i].scaleX = 0.8;
+        orangeImage[i].scaleY = 0.8;
+    }
+
     stage.enableMouseOver(20);
-    
+
     stage.addChild(slotBackgroundUI);
     stage.addChild(betMaxButton);
     stage.addChild(betOneButton);
@@ -301,54 +318,179 @@ function Reels() {
         switch (outCome[spin]) {
             case checkRange(outCome[spin], 1, 27):  // 41.5% probability
                 betLine[spin] = "blank";
+                if (spin == 0) {
+                    stage.addChild(reel1);
+                    reel1.x = 60;
+                    reel1.y = 225;
+
+                }
+                else if (spin == 1) {
+                    stage.addChild(reel2);
+                    reel2.x = 170;
+                    reel2.y = 225;
+
+                }
+                else if (spin == 2) {
+                    stage.addChild(reel3);
+                    reel3.x = 280;
+                    reel3.y = 225;
+
+                }
                 blanks++;
                 break;
             case checkRange(outCome[spin], 28, 37): // 15.4% probability
                 betLine[spin] = "Grapes";
-                stage.addChild(grapeImage);
+                stage.addChild(grapeImage[spin]);
                 if (spin == 0) {
-                    grapeImage.x = 60;
-                    grapeImage.y = 225;
-                    alert("spin = 0");
+                    grapeImage[spin].x = 70;
+                    grapeImage[spin].y = 235;
+
                 }
                 else if (spin == 1) {
-                    grapeImage.x = 170;
-                    grapeImage.y = 225;
-                    alert("spin = 1");
+                    grapeImage[spin].x = 180;
+                    grapeImage[spin].y = 235;
 
                 }
                 else if (spin == 2) {
-                    grapeImage.x = 280;
-                    grapeImage.y = 225;
-                    alert("spin = 2");
+                    grapeImage[spin].x = 290;
+                    grapeImage[spin].y = 235;
 
                 }
                 grapes++;
                 break;
             case checkRange(outCome[spin], 38, 46): // 13.8% probability
                 betLine[spin] = "Banana";
+                if (spin == 0) {
+                    stage.addChild(bananaImage[spin]);
+                    bananaImage[spin].x = 70;
+                    bananaImage[spin].y = 235;
+
+                }
+                else if (spin == 1) {
+                    stage.addChild(bananaImage[spin]);
+                    bananaImage[spin].x = 180;
+                    bananaImage[spin].y = 235;
+
+                }
+                else if (spin == 2) {
+                    stage.addChild(bananaImage[spin]);
+                    bananaImage[spin].x = 290;
+                    bananaImage[spin].y = 235;
+
+                }
                 bananas++;
                 break;
             case checkRange(outCome[spin], 47, 54): // 12.3% probability
                 betLine[spin] = "Orange";
+                if (spin == 0) {
+                    stage.addChild(orangeImage[spin]);
+                    orangeImage[spin].x = 70;
+                    orangeImage[spin].y = 235;
+
+                }
+                else if (spin == 1) {
+                    stage.addChild(orangeImage[spin]);
+                    orangeImage[spin].x = 180;
+                    orangeImage[spin].y = 235;
+
+                }
+                else if (spin == 2) {
+                    stage.addChild(orangeImage[spin]);
+                    orangeImage[spin].x = 290;
+                    orangeImage[spin].y = 235;
+
+                }
                 oranges++;
                 break;
             case checkRange(outCome[spin], 55, 59): //  7.7% probability
                 betLine[spin] = "Cherry";
+                if (spin == 0) {
+                    stage.addChild(cherryImage[spin]);
+                    cherryImage[spin].x = 70;
+                    cherryImage[spin].y = 235;
+
+                }
+                else if (spin == 1) {
+                    stage.addChild(cherryImage[spin]);
+                    cherryImage[spin].x = 180;
+                    cherryImage[spin].y = 235;
+
+                }
+                else if (spin == 2) {
+                    stage.addChild(cherryImage[spin]);
+                    cherryImage[spin].x = 290;
+                    cherryImage[spin].y = 235;
+
+                }
                 cherries++;
                 break;
             case checkRange(outCome[spin], 60, 62): //  4.6% probability
                 betLine[spin] = "Bar";
+                if (spin == 0) {
+                    stage.addChild(barImage[spin]);
+                    barImage[spin].x = 70;
+                    barImage[spin].y = 235;
+
+                }
+                else if (spin == 1) {
+                    stage.addChild(barImage[spin]);
+                    barImage[spin].x = 180;
+                    barImage[spin].y = 235;
+
+                }
+                else if (spin == 2) {
+                    stage.addChild(barImage[spin]);
+                    barImage[spin].x = 290;
+                    barImage[spin].y = 235;
+
+                }
                 bars++;
                 break;
             case checkRange(outCome[spin], 63, 64): //  3.1% probability
                 betLine[spin] = "Bell";
+                if (spin == 0) {
+                    stage.addChild(bellImage[spin]);
+                    bellImage[spin].x = 70;
+                    bellImage[spin].y = 235;
+
+                }
+                else if (spin == 1) {
+                    stage.addChild(bellImage[spin]);
+                    bellImage[spin].x = 180;
+                    bellImage[spin].y = 235;
+
+                }
+                else if (spin == 2) {
+                    stage.addChild(bellImage[spin]);
+                    bellImage[spin].x = 290;
+                    bellImage[spin].y = 235;
+
+                }
                 bells++;
                 break;
             case checkRange(outCome[spin], 65, 65): //  1.5% probability
                 betLine[spin] = "Seven";
-                sevens++;
+                if (spin == 0) {
+                    stage.addChild(sevenImage[spin]);
+                    sevenImage[spin].x = 70;
+                    sevenImage[spin].y = 235;
+
+                }
+                else if (spin == 1) {
+                    stage.addChild(sevenImage[spin]);
+                    sevenImage[spin].x = 180;
+                    sevenImage[spin].y = 235;
+
+                }
+                else if (spin == 2) {
+                    stage.addChild(sevenImage[spin]);
+                    sevenImage[spin].x = 290;
+                    sevenImage[spin].y = 235;
+
+                }
+                bars++;
                 break;
+            
         }
     }
     return betLine;
