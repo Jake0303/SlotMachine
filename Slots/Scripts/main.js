@@ -102,30 +102,30 @@ function init() {
     createjs.Ticker.setFPS(60);
 
     spinButton.addEventListener("mouseover", function () {
-        spinButton.alpha = 0.5;
-        document.body.style.cursor = 'pointer';
+        if (playerBet > 0) {
+            spinButton.alpha = 0.5;
+            document.body.style.cursor = 'pointer';
+        }
+        else if (playerBet <= 0) {
+            document.body.style.cursor = 'not-allowed';
+            stage.canvas.title = 'Please enter a bet to spin.';
+            spinButton.removeEventListener("click", handleClick);
+        }
+        else if (playerMoney <= 0) {
+            document.body.style.cursor = 'not-allowed';
+            stage.canvas.title = 'Your have no money!';
+            spinButton.removeEventListener("click", handleClick);
+        }
         stage.update();
     });
     spinButton.addEventListener("rollout", function () {
         spinButton.alpha = 1;
         document.body.style.cursor = 'default';
+        stage.canvas.title = ''
         stage.update();
     });
 
-    spinButton.addEventListener("click", function () {
-        spinResult = Reels();
-        fruits = spinResult[0] + " - " + spinResult[1] + " - " + spinResult[2];
-        $("div#result>p").text(fruits);
-        determineWinnings();
-        turn++;
-        showPlayerStats();
-
-        stage.removeChild(spinButton);
-        stage.addChild(spinClick);
-        spinClick.x = 350;
-        spinClick.y = 420;
-        clickedSpin = true;
-    });
+    spinButton.addEventListener("click", handleClick);
 
     resetButton.addEventListener("mouseover", function () {
         resetButton.alpha = 0.5;
@@ -157,11 +157,17 @@ function init() {
         stage.update();
     });
     betMaxButton.addEventListener("click", function () {
-        stage.removeChild(betMaxButton);
-        stage.addChild(betMaxClick);
-        betMaxClick.x = 150;
-        betMaxClick.y = 420;
-        clickedBetMax = true;
+        if (playerBet <= playerMoney) {
+            stage.removeChild(betMaxButton);
+            stage.addChild(betMaxClick);
+            betMaxClick.x = 150;
+            betMaxClick.y = 420;
+            playerBet += playerMoney;
+            clickedBetMax = true;
+        }
+        else {
+            alert('You cannot bet more than what you have');
+        }
     });
 
     betOneButton.addEventListener("mouseover", function () {
@@ -175,16 +181,45 @@ function init() {
         stage.update();
     });
     betOneButton.addEventListener("click", function () {
-        stage.removeChild(betOneButton);
-        stage.addChild(betOneClick);
-        betOneClick.x = 100;
-        betOneClick.y = 420;
-        clickedBetOne = true;
+        if (playerBet <= playerMoney) {
+            stage.removeChild(betOneButton);
+            stage.addChild(betOneClick);
+            betOneClick.x = 100;
+            betOneClick.y = 420;
+            playerBet += 1;
+            clickedBetOne = true;
+        }
+        else {
+            alert('You cannot bet more than what you have');
+        }
     });
 }
 
+function handleClick() {
+    spinResult = Reels();
+    fruits = spinResult[0] + " - " + spinResult[1] + " - " + spinResult[2];
+    $("div#result>p").text(fruits);
+    determineWinnings();
+    turn++;
+    showPlayerStats();
+
+    stage.removeChild(spinButton);
+    stage.addChild(spinClick);
+    spinClick.x = 350;
+    spinClick.y = 420;
+    clickedSpin = true;
+}
 
 function handleTick() {
+    if (playerBet > 0 && playerMoney > 0) {
+        spinButton.addEventListener("click", handleClick);
+    }
+    else {
+        document.body.style.cursor = 'not-allowed';
+        stage.canvas.title = 'Your have no money! Click reset or exit the game.';
+        spinButton.removeEventListener("click", handleClick);
+    }
+
     if (clickedSpin) {
         timer += 1;
 
@@ -490,7 +525,7 @@ function Reels() {
                 }
                 bars++;
                 break;
-            
+
         }
     }
     return betLine;
@@ -559,7 +594,6 @@ function determineWinnings() {
 
 /* When the player clicks the spin button the game kicks off */
 $("#spinButton").click(function () {
-    playerBet = $("div#betEntry>input").val();
 
     if (playerMoney == 0) {
         if (confirm("You ran out of Money! \nDo you want to play again?")) {
