@@ -428,19 +428,19 @@ function Reels() {
                 betLine[spin] = "Bar";
                 if (spin == 0) {
                     stage.addChild(barImage[spin]);
-                    barImage[spin].x = 70;
+                    barImage[spin].x = 69;
                     barImage[spin].y = 235;
 
                 }
                 else if (spin == 1) {
                     stage.addChild(barImage[spin]);
-                    barImage[spin].x = 180;
+                    barImage[spin].x = 179;
                     barImage[spin].y = 235;
 
                 }
                 else if (spin == 2) {
                     stage.addChild(barImage[spin]);
-                    barImage[spin].x = 290;
+                    barImage[spin].x = 289;
                     barImage[spin].y = 235;
 
                 }
@@ -450,19 +450,19 @@ function Reels() {
                 betLine[spin] = "Bell";
                 if (spin == 0) {
                     stage.addChild(bellImage[spin]);
-                    bellImage[spin].x = 70;
+                    bellImage[spin].x = 68;
                     bellImage[spin].y = 235;
 
                 }
                 else if (spin == 1) {
                     stage.addChild(bellImage[spin]);
-                    bellImage[spin].x = 180;
+                    bellImage[spin].x = 178;
                     bellImage[spin].y = 235;
 
                 }
                 else if (spin == 2) {
                     stage.addChild(bellImage[spin]);
-                    bellImage[spin].x = 290;
+                    bellImage[spin].x = 288;
                     bellImage[spin].y = 235;
 
                 }
@@ -473,19 +473,19 @@ function Reels() {
                 if (spin == 0) {
                     stage.addChild(sevenImage[spin]);
                     sevenImage[spin].x = 70;
-                    sevenImage[spin].y = 235;
+                    sevenImage[spin].y = 234;
 
                 }
                 else if (spin == 1) {
                     stage.addChild(sevenImage[spin]);
                     sevenImage[spin].x = 180;
-                    sevenImage[spin].y = 235;
+                    sevenImage[spin].y = 234;
 
                 }
                 else if (spin == 2) {
                     stage.addChild(sevenImage[spin]);
                     sevenImage[spin].x = 290;
-                    sevenImage[spin].y = 235;
+                    sevenImage[spin].y = 234;
 
                 }
                 bars++;
