@@ -59,6 +59,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="img\betmaxglossy.png" />
+    <Content Include="img\betoneglossy.png" />
+    <Content Include="img\resetglossy.png" />
+    <Content Include="img\spinglossy.png" />
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <Content Include="obj\Debug\SlotMachineAssignment2.csprojResolveAssemblyReference.cache" />
     <Content Include="Scripts\app.js.map" />
@@ -94,6 +98,7 @@
     <Content Include="Scripts\EaselJS-release_v0.7.1\tools\google-closure\README" />
     <Content Include="Scripts\EaselJS-release_v0.7.1\tutorials\Fonts\assets\Dorsa-Regular.ttf" />
     <Content Include="Scripts\EaselJS-release_v0.7.1\tutorials\_shared\SyntaxHighlighter\MIT-LICENSE" />
+    <Content Include="Scripts\main.js" />
     <Content Include="Scripts\main.js.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -322,7 +327,6 @@
     <Content Include="Scripts\EaselJS-release_v0.7.1\VERSIONS.txt" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
-    <Content Include="Scripts\main.js" />
     <None Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
