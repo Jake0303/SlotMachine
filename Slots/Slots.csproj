@@ -59,6 +59,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="img\bar.jpg" />
     <Content Include="img\betmaxglossy.png" />
     <Content Include="img\betoneglossy.png" />
     <Content Include="img\resetglossy.png" />
@@ -110,7 +111,6 @@
   <ItemGroup>
     <Content Include="css\main.css" />
     <Content Include="img\banana.jpg" />
-    <Content Include="img\bar.jpg" />
     <Content Include="img\bell.jpg" />
     <Content Include="img\betmaxbutton.png" />
     <Content Include="img\betonebutton.png" />
