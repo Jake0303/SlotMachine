@@ -1,4 +1,6 @@
-﻿var playerMoney = 1000;
+﻿//Main.js
+//Instance variables
+var playerMoney = 1000;
 var winnings = 0;
 var jackpot = 5000;
 var turn = 0;
@@ -18,19 +20,19 @@ var sevens = 0;
 var blanks = 0;
 
 
-
+//UI
 var stage = new createjs.Stage(document.getElementById("canvas"));
 var slotBackgroundUI = new createjs.Bitmap("./img/slotmachineUI.jpg");
 var betMaxButton = new createjs.Bitmap("./img/betmaxbutton.png");
 var betOneButton = new createjs.Bitmap("./img/betonebutton.png");
 var resetButton = new createjs.Bitmap("./img/resetbutton.png");
 var spinButton = new createjs.Bitmap("./img/spinbutton.png");
-
+//Buttons when clicked
 var betMaxClick = new createjs.Bitmap("./img/betmaxglossy.png");
 var betOneClick = new createjs.Bitmap("./img/betoneglossy.png");
 var resetClick = new createjs.Bitmap("./img/resetglossy.png");
 var spinClick = new createjs.Bitmap("./img/spinglossy.png");
-
+//Reel Images
 var reel1 = new createjs.Bitmap("./img/reel.jpg");
 var reel2 = new createjs.Bitmap("./img/reel.jpg");
 var reel3 = new createjs.Bitmap("./img/reel.jpg");
@@ -42,7 +44,7 @@ var cherryImage = [new createjs.Bitmap("./img/cherries.jpg"), new createjs.Bitma
 var grapeImage = [new createjs.Bitmap("./img/grape.jpg"), new createjs.Bitmap("./img/grape.jpg"), new createjs.Bitmap("./img/grape.jpg")];
 var orangeImage = [new createjs.Bitmap("./img/orange.jpg"), new createjs.Bitmap("./img/orange.jpg"), new createjs.Bitmap("./img/orange.jpg")];
 var sevenImage = [new createjs.Bitmap("./img/seven.jpg"), new createjs.Bitmap("./img/seven.jpg"), new createjs.Bitmap("./img/seven.jpg")];
-
+//UI Text
 var displayBet = new createjs.Text("Bet:" + playerBet, "16px Arial", "#ff7700");
 var displayMoney = new createjs.Text("Cash:" + playerMoney, "16px Arial", "#ff7700");
 var displayWins = new createjs.Text("Wins:" + winNumber, "16px Arial", "#ff7700");
@@ -50,7 +52,8 @@ var displayLosses = new createjs.Text("Losses:" + lossNumber, "16px Arial", "#ff
 var displayJackpot = new createjs.Text("Jackpot:" + jackpot, "16px Arial", "#ff7700");
 
 var spinAnim = [new createjs.Bitmap("./img/spinanim.gif"), new createjs.Bitmap("./img/spinanim.gif"), new createjs.Bitmap("./img/spinanim.gif")];
-
+var spinAnim2 = [new createjs.Bitmap("./img/spinanim2.gif"), new createjs.Bitmap("./img/spinanim2.gif"), new createjs.Bitmap("./img/spinanim2.gif")];
+//SFX
 var ambience = new Audio('./sounds/ambience_casino-stephan_schutze-1391090820.mp3');
 var winSound = new Audio('./sounds/casino_slot_machine_bell_or_alarm_ring_win_jackpot_loops_.mp3');
 var buttonPush = new Audio('./sounds/buttonclick.mp3');
@@ -58,9 +61,10 @@ var reelSpin = new Audio('./sounds/casino_slot_machine_lever_pull_and_icons_spin
 
 var clickedBetMax = false, clickedBetOne = false, clickedReset = false, clickedSpin = false, playSpinAnim = false;
 var timer = 0, animTimer = 0;
-
+//Called when the page is loaded
 function init() {
     for (var i = 0; i < 3; i++) {
+        //Lower the scale for every reel image
         grapeImage[i].scaleX = 0.8;
         grapeImage[i].scaleY = 0.8;
         cherryImage[i].scaleX = 0.8;
@@ -76,10 +80,11 @@ function init() {
         orangeImage[i].scaleX = 0.8;
         orangeImage[i].scaleY = 0.8;
     }
+    //Play our looping ambience music and enable hovering
     playAmbience();
     stage.enableMouseOver(20);
 
-
+    //Add our background and ui together
     stage.addChild(slotBackgroundUI);
     stage.addChild(betMaxButton);
     stage.addChild(betOneButton);
@@ -93,7 +98,7 @@ function init() {
     stage.addChild(displayWins);
     stage.addChild(displayLosses);
     stage.addChild(displayJackpot);
-
+    //Position our children
     displayBet.x = 60;
     displayBet.y = 80;
 
@@ -129,11 +134,12 @@ function init() {
 
     resetButton.x = 50;
     resetButton.y = 422;
-
+    //Add our events for tick and for button clicking and hovering
     createjs.Ticker.addEventListener("tick", handleTick);
     createjs.Ticker.setFPS(60);
 
     spinButton.addEventListener("mouseover", function () {
+        //Validate the players money and bet are good
         if (playerBet > 0 && playerMoney > 0) {
             spinButton.alpha = 0.5;
             document.body.style.cursor = 'pointer';
@@ -170,6 +176,7 @@ function init() {
         stage.update();
     });
     resetButton.addEventListener("click", function () {
+        //Reset the game
         buttonPush.volume = 0.5;
         buttonPush.play();
         resetAll();
@@ -218,6 +225,8 @@ function init() {
             stage.addChild(betMaxClick);
             betMaxClick.x = 150;
             betMaxClick.y = 420;
+            //Without this check, the bet would be added to any previous bets resulting
+            //in money the player did not have
             if (playerBet > 0) {
                 playerBet = 0;
                 playerBet += playerMoney;
@@ -266,40 +275,61 @@ function init() {
     });
     
 }
-
+//handleClick function, called when we press the spin button
 function handleClick() {
     buttonPush.volume = 0.5;
     buttonPush.play();
     reelSpin.play();
     playSpinAnim = true;
 }
-
+//handleTick function, called every second
 function handleTick() {
-
+    //Show the players stats
     displayBet.text = "Bet:" + playerBet;
     displayMoney.text = "Cash:" + playerMoney;
     displayWins.text = "Wins:" + winNumber;
     displayLosses.text = "Losses:" + lossNumber;
     displayJackpot.text = "Jackpot:" + jackpot;
-
+    //This handles our spin reel animation, switch images constantly
     if (playSpinAnim) {
         animTimer += 1;
-        stage.addChild(spinAnim[0]);
-        stage.addChild(spinAnim[1]);
-        stage.addChild(spinAnim[2]);
-        spinAnim[0].x = 60;
-        spinAnim[0].y = 225;
+        
+        if (animTimer % 2 == 0) {
+            stage.addChild(spinAnim[0]);
+            stage.addChild(spinAnim[1]);
+            stage.addChild(spinAnim[2]);
 
-        spinAnim[1].x = 170;
-        spinAnim[1].y = 225;
+            spinAnim[0].x = 68;
+            spinAnim[0].y = 235;
 
-        spinAnim[2].x = 280;
-        spinAnim[2].y = 225;
+            spinAnim[1].x = 178;
+            spinAnim[1].y = 235;
 
-        if (animTimer > 20) {
+            spinAnim[2].x = 288;
+            spinAnim[2].y = 235;
+        }
+        else {
+            stage.addChild(spinAnim2[0]);
+            stage.addChild(spinAnim2[1]);
+            stage.addChild(spinAnim2[2]);
+            
+            spinAnim2[0].x = 65;
+            spinAnim2[0].y = 235;
+
+            spinAnim2[1].x = 175;
+            spinAnim2[1].y = 235;
+
+            spinAnim2[2].x = 285;
+            spinAnim2[2].y = 235;
+        }
+        //Once a couple of seconds have passed, show the player the result of the spin
+        if (animTimer > 80) {
             stage.removeChild(spinAnim[0]);
             stage.removeChild(spinAnim[1]);
             stage.removeChild(spinAnim[2]);
+            stage.removeChild(spinAnim2[0]);
+            stage.removeChild(spinAnim2[1]);
+            stage.removeChild(spinAnim2[2]);
 
             spinResult = Reels();
             determineWinnings();
@@ -316,7 +346,7 @@ function handleTick() {
             animTimer = 0;
         }
     }
-
+    //Disable buttons if the player hasn't bet or has no money
     if (playerBet > 0 && playerMoney > 0) {
         spinButton.addEventListener("click", handleClick);
     }
@@ -328,7 +358,7 @@ function handleTick() {
         spinButton.removeEventListener("click", handleClick);
 
     }
-
+    //Show a pressed image for buttons then go back after a couple seconds
     if (clickedSpin) {
         timer += 1;
 
@@ -380,16 +410,7 @@ function handleTick() {
     stage.update();
 }
 
-/* Utility function to show Player Stats */
-function showPlayerStats() {
-    winRatio = winNumber / turn;
-    $("#jackpot").text("Jackpot: " + jackpot);
-    $("#playerMoney").text("Player Money: " + playerMoney);
-    $("#playerTurn").text("Turn: " + turn);
-    $("#playerWins").text("Wins: " + winNumber);
-    $("#playerLosses").text("Losses: " + lossNumber);
-    $("#playerWinRatio").text("Win Ratio: " + (winRatio * 100).toFixed(2) + "%");
-}
+
 
 /* Utility function to reset all fruit tallies */
 function resetFruitTally() {
@@ -432,21 +453,7 @@ function checkJackPot() {
     }
 }
 
-/* Utility function to show a win message and increase player money */
-function showWinMessage() {
-    playerMoney += winnings;
-    $("div#winOrLose>p").text("You Won: $" + winnings);
-    resetFruitTally();
-    checkJackPot();
-}
 
-/* Utility function to show a loss message and reduce player money */
-function showLossMessage() {
-    playerMoney -= playerBet;
-    $("div#winOrLose>p").text("You Lost!");
-    jackpot += +playerBet;
-    resetFruitTally();
-}
 
 /* Utility function to check if a value falls within a range of bounds */
 function checkRange(value, lowerBounds, upperBounds) {
@@ -707,45 +714,17 @@ function determineWinnings() {
     }
 
 }
-
-/* When the player clicks the spin button the game kicks off */
-$("#spinButton").click(function () {
-
-    if (playerMoney == 0) {
-        if (confirm("You ran out of Money! \nDo you want to play again?")) {
-            resetAll();
-            showPlayerStats();
-        }
-    }
-    else if (playerBet > playerMoney) {
-        alert("You don't have enough Money to place that bet.");
-    }
-    else if (playerBet < 0) {
-        alert("All bets must be a positive $ amount.");
-    }
-    else if (playerBet <= playerMoney) {
-        spinResult = Reels();
-        fruits = spinResult[0] + " - " + spinResult[1] + " - " + spinResult[2];
-        $("div#result>p").text(fruits);
-        determineWinnings();
-        turn++;
-        showPlayerStats();
-    }
-    else {
-        alert("Please enter a valid bet amount");
-    }
-
-});
-
+//When the player clicks the big red X, end the game
 function endGame() {
     stage.removeAllChildren();
     document.getElementById('closeButton').style.display = 'none';
     ambience.pause();
 }
-
+//play our ambience music and loop it
 function playAmbience()
 {
     ambience.loop = true;
     ambience.volume = 0.2;
     ambience.play();
 }
+//end of main.js

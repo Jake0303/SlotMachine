@@ -66,6 +66,7 @@
     <Content Include="img\close.png" />
     <Content Include="img\resetglossy.png" />
     <Content Include="img\spinanim.gif" />
+    <Content Include="img\spinanim2.gif" />
     <Content Include="img\spinglossy.png" />
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <Content Include="obj\Debug\SlotMachineAssignment2.csprojResolveAssemblyReference.cache" />
