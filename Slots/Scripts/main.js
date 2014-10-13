@@ -1,4 +1,9 @@
-﻿//Main.js
+﻿/*Main.js
+* by Jacob Amaral
+* This program handles all the slot machines logic as well as drawing it and updating
+* information based on the players inputs
+* Date:10/13/2014 v1.0
+*/
 //Instance variables
 var playerMoney = 1000;
 var winnings = 0;
@@ -358,7 +363,7 @@ function handleTick() {
         spinButton.removeEventListener("click", handleClick);
 
     }
-    //Show a pressed image for buttons then go back after a couple seconds
+    //If the player clicked a button, show a pushed in image
     if (clickedSpin) {
         timer += 1;
 
@@ -410,7 +415,16 @@ function handleTick() {
     stage.update();
 }
 
-
+/* Utility function to show Player Stats */
+function showPlayerStats() {
+    winRatio = winNumber / turn;
+    $("#jackpot").text("Jackpot: " + jackpot);
+    $("#playerMoney").text("Player Money: " + playerMoney);
+    $("#playerTurn").text("Turn: " + turn);
+    $("#playerWins").text("Wins: " + winNumber);
+    $("#playerLosses").text("Losses: " + lossNumber);
+    $("#playerWinRatio").text("Win Ratio: " + (winRatio * 100).toFixed(2) + "%");
+}
 
 /* Utility function to reset all fruit tallies */
 function resetFruitTally() {
@@ -453,7 +467,21 @@ function checkJackPot() {
     }
 }
 
+/* Utility function to show a win message and increase player money */
+function showWinMessage() {
+    playerMoney += winnings;
+    $("div#winOrLose>p").text("You Won: $" + winnings);
+    resetFruitTally();
+    checkJackPot();
+}
 
+/* Utility function to show a loss message and reduce player money */
+function showLossMessage() {
+    playerMoney -= playerBet;
+    $("div#winOrLose>p").text("You Lost!");
+    jackpot += +playerBet;
+    resetFruitTally();
+}
 
 /* Utility function to check if a value falls within a range of bounds */
 function checkRange(value, lowerBounds, upperBounds) {
@@ -714,6 +742,36 @@ function determineWinnings() {
     }
 
 }
+
+/* When the player clicks the spin button the game kicks off */
+$("#spinButton").click(function () {
+
+    if (playerMoney == 0) {
+        if (confirm("You ran out of Money! \nDo you want to play again?")) {
+            resetAll();
+            showPlayerStats();
+        }
+    }
+    else if (playerBet > playerMoney) {
+        alert("You don't have enough Money to place that bet.");
+    }
+    else if (playerBet < 0) {
+        alert("All bets must be a positive $ amount.");
+    }
+    else if (playerBet <= playerMoney) {
+        spinResult = Reels();
+        fruits = spinResult[0] + " - " + spinResult[1] + " - " + spinResult[2];
+        $("div#result>p").text(fruits);
+        determineWinnings();
+        turn++;
+        showPlayerStats();
+    }
+    else {
+        alert("Please enter a valid bet amount");
+    }
+
+});
+
 //When the player clicks the big red X, end the game
 function endGame() {
     stage.removeAllChildren();
@@ -721,8 +779,7 @@ function endGame() {
     ambience.pause();
 }
 //play our ambience music and loop it
-function playAmbience()
-{
+function playAmbience() {
     ambience.loop = true;
     ambience.volume = 0.2;
     ambience.play();
