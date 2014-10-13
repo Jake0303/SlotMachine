@@ -127,7 +127,7 @@ function init() {
     createjs.Ticker.setFPS(60);
 
     spinButton.addEventListener("mouseover", function () {
-        if (playerBet > 0) {
+        if (playerBet > 0 && playerMoney > 0) {
             spinButton.alpha = 0.5;
             document.body.style.cursor = 'pointer';
         }
@@ -138,7 +138,7 @@ function init() {
         }
         else if (playerMoney <= 0) {
             document.body.style.cursor = 'not-allowed';
-            stage.canvas.title = 'Your have no money!';
+            stage.canvas.title = 'Your have no money! Click reset or exit the game.';
             spinButton.removeEventListener("click", handleClick);
         }
         stage.update();
@@ -185,8 +185,15 @@ function init() {
 
 
     betMaxButton.addEventListener("mouseover", function () {
-        betMaxButton.alpha = 0.5;
-        document.body.style.cursor = 'pointer';
+        if (playerMoney > 0) {
+            betMaxButton.alpha = 0.5;
+            document.body.style.cursor = 'pointer';
+        }
+        else {
+            playerMoney = 0;
+            document.body.style.cursor = 'not-allowed';
+            stage.canvas.title = 'Your have no money! Click reset or exit the game.';
+        }
         stage.update();
     });
     betMaxButton.addEventListener("rollout", function () {
@@ -200,7 +207,13 @@ function init() {
             stage.addChild(betMaxClick);
             betMaxClick.x = 150;
             betMaxClick.y = 420;
-            playerBet += playerMoney;
+            if (playerBet > 0) {
+                playerBet = 0;
+                playerBet += playerMoney;
+            }
+            else {
+                playerBet += playerMoney;
+            }
             clickedBetMax = true;
         }
         else {
@@ -209,8 +222,15 @@ function init() {
     });
 
     betOneButton.addEventListener("mouseover", function () {
-        betOneButton.alpha = 0.5;
-        document.body.style.cursor = 'pointer';
+        if (playerMoney > 0) {
+            betOneButton.alpha = 0.5;
+            document.body.style.cursor = 'pointer';
+        }
+        else {
+            playerMoney = 0;
+            document.body.style.cursor = 'not-allowed';
+            stage.canvas.title = 'Your have no money! Click reset or exit the game.';
+        }
         stage.update();
     });
     betOneButton.addEventListener("rollout", function () {
@@ -231,7 +251,7 @@ function init() {
             alert('You cannot bet more than what you have');
         }
     });
-    
+
 }
 
 function handleClick() {
@@ -250,7 +270,7 @@ function handleClick() {
 }
 
 function handleTick() {
-    
+
     displayBet.text = "Bet:" + playerBet;
     displayMoney.text = "Cash:" + playerMoney;
     displayWins.text = "Wins:" + winNumber;
@@ -261,13 +281,10 @@ function handleTick() {
         spinButton.addEventListener("click", handleClick);
     }
     else if (playerMoney <= 0) {
-        playerMoney = 0;
-        document.body.style.cursor = 'not-allowed';
-        stage.canvas.title = 'Your have no money! Click reset or exit the game.';
+
         spinButton.removeEventListener("click", handleClick);
     }
-    if (playerBet <= 0)
-    {
+    if (playerBet <= 0) {
         spinButton.removeEventListener("click", handleClick);
 
     }
@@ -675,10 +692,8 @@ $("#spinButton").click(function () {
 
 });
 
-function endGame()
-{
-    
+function endGame() {
     stage.removeAllChildren();
-    
-    
+    document.getElementById('closeButton').style.display = 'none';
+
 }
