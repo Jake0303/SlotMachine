@@ -51,6 +51,9 @@ var displayJackpot = new createjs.Text("Jackpot:" + jackpot, "16px Arial", "#ff7
 
 var spinAnim = [new createjs.Bitmap("./img/spinanim.gif"), new createjs.Bitmap("./img/spinanim.gif"), new createjs.Bitmap("./img/spinanim.gif")];
 
+createjs.Sound.registerPlugins([createjs.WebAudioPlugin, createjs.HTMLAudioPlugin, createjs.FlashPlugin]);
+createjs.Sound.alternateExtensions = ["mp3"];
+createjs.Sound.registerSound("./sounds/ambience_casino-stephan_schutze-1391090820.mp3", "casinoambience");
 
 var clickedBetMax = false, clickedBetOne = false, clickedReset = false, clickedSpin = false, playSpinAnim = false;
 var timer = 0, animTimer = 0;
@@ -72,7 +75,7 @@ function init() {
         orangeImage[i].scaleX = 0.8;
         orangeImage[i].scaleY = 0.8;
     }
-
+    playAmbience();
     stage.enableMouseOver(20);
 
 
@@ -254,7 +257,8 @@ function init() {
             alert('You cannot bet more than what you have');
         }
     });
-
+    var ambience = createjs.Sound.play("casinoambience", { interrupt: createjs.Sound.INTERRUPT_ANY, loop: -1 });
+    ambience.volume = 0.5;
 }
 
 function handleClick() {
@@ -727,4 +731,12 @@ function endGame() {
     stage.removeAllChildren();
     document.getElementById('closeButton').style.display = 'none';
 
+}
+
+function playAmbience()
+{
+    var ambience = new Audio('./sounds/ambience_casino-stephan_schutze-1391090820.mp3');
+    ambience.loop = true;
+    ambience.volume = 0.2;
+    ambience.play();
 }
