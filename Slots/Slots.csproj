@@ -115,6 +115,9 @@
     <Content Include="Scripts\SoundJS-release_v0.5.2\lib\soundjs-NEXT.min.js" />
     <Content Include="Scripts\SoundJS-release_v0.5.2\lib\soundjs.flashplugin-NEXT.min.js" />
     <Content Include="sounds\ambience_casino-stephan_schutze-1391090820.mp3" />
+    <Content Include="sounds\buttonclick.mp3" />
+    <Content Include="sounds\casino_slot_machine_bell_or_alarm_ring_win_jackpot_loops_.mp3" />
+    <Content Include="sounds\casino_slot_machine_lever_pull_and_icons_spin.mp3" />
     <Content Include="Web.config" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
   </ItemGroup>

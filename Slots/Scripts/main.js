@@ -51,9 +51,10 @@ var displayJackpot = new createjs.Text("Jackpot:" + jackpot, "16px Arial", "#ff7
 
 var spinAnim = [new createjs.Bitmap("./img/spinanim.gif"), new createjs.Bitmap("./img/spinanim.gif"), new createjs.Bitmap("./img/spinanim.gif")];
 
-createjs.Sound.registerPlugins([createjs.WebAudioPlugin, createjs.HTMLAudioPlugin, createjs.FlashPlugin]);
-createjs.Sound.alternateExtensions = ["mp3"];
-createjs.Sound.registerSound("./sounds/ambience_casino-stephan_schutze-1391090820.mp3", "casinoambience");
+var ambience = new Audio('./sounds/ambience_casino-stephan_schutze-1391090820.mp3');
+var winSound = new Audio('./sounds/casino_slot_machine_bell_or_alarm_ring_win_jackpot_loops_.mp3');
+var buttonPush = new Audio('./sounds/buttonclick.mp3');
+var reelSpin = new Audio('./sounds/casino_slot_machine_lever_pull_and_icons_spin.mp3');
 
 var clickedBetMax = false, clickedBetOne = false, clickedReset = false, clickedSpin = false, playSpinAnim = false;
 var timer = 0, animTimer = 0;
@@ -169,6 +170,8 @@ function init() {
         stage.update();
     });
     resetButton.addEventListener("click", function () {
+        buttonPush.volume = 0.5;
+        buttonPush.play();
         resetAll();
         stage.addChild(reel1);
         stage.addChild(reel2);
@@ -209,6 +212,8 @@ function init() {
     });
     betMaxButton.addEventListener("click", function () {
         if (playerBet <= playerMoney) {
+            buttonPush.volume = 0.5;
+            buttonPush.play();
             stage.removeChild(betMaxButton);
             stage.addChild(betMaxClick);
             betMaxClick.x = 150;
@@ -246,6 +251,8 @@ function init() {
     });
     betOneButton.addEventListener("click", function () {
         if (playerBet <= playerMoney) {
+            buttonPush.volume = 0.5;
+            buttonPush.play();
             stage.removeChild(betOneButton);
             stage.addChild(betOneClick);
             betOneClick.x = 100;
@@ -257,13 +264,14 @@ function init() {
             alert('You cannot bet more than what you have');
         }
     });
-    var ambience = createjs.Sound.play("casinoambience", { interrupt: createjs.Sound.INTERRUPT_ANY, loop: -1 });
-    ambience.volume = 0.5;
+    
 }
 
 function handleClick() {
+    buttonPush.volume = 0.5;
+    buttonPush.play();
+    reelSpin.play();
     playSpinAnim = true;
-    
 }
 
 function handleTick() {
@@ -417,6 +425,8 @@ function checkJackPot() {
     var jackPotWin = Math.floor(Math.random() * 51 + 1);
     if (jackPotTry == jackPotWin) {
         alert("You Won the $" + jackpot + " Jackpot!!");
+        winSound.volume = 0.5;
+        winSound.play();
         playerMoney += jackpot;
         jackpot = 1000;
     }
@@ -730,12 +740,11 @@ $("#spinButton").click(function () {
 function endGame() {
     stage.removeAllChildren();
     document.getElementById('closeButton').style.display = 'none';
-
+    ambience.pause();
 }
 
 function playAmbience()
 {
-    var ambience = new Audio('./sounds/ambience_casino-stephan_schutze-1391090820.mp3');
     ambience.loop = true;
     ambience.volume = 0.2;
     ambience.play();
