@@ -49,9 +49,11 @@ var displayWins = new createjs.Text("Wins:" + winNumber, "16px Arial", "#ff7700"
 var displayLosses = new createjs.Text("Losses:" + lossNumber, "16px Arial", "#ff7700");
 var displayJackpot = new createjs.Text("Jackpot:" + jackpot, "16px Arial", "#ff7700");
 
+var spinAnim = [new createjs.Bitmap("./img/spinanim.gif"), new createjs.Bitmap("./img/spinanim.gif"), new createjs.Bitmap("./img/spinanim.gif")];
 
-var clickedBetMax = false, clickedBetOne = false, clickedReset = false, clickedSpin = false;
-var timer = 0;
+
+var clickedBetMax = false, clickedBetOne = false, clickedReset = false, clickedSpin = false, playSpinAnim = false;
+var timer = 0, animTimer = 0;
 
 function init() {
     for (var i = 0; i < 3; i++) {
@@ -72,6 +74,7 @@ function init() {
     }
 
     stage.enableMouseOver(20);
+
 
     stage.addChild(slotBackgroundUI);
     stage.addChild(betMaxButton);
@@ -255,18 +258,8 @@ function init() {
 }
 
 function handleClick() {
-    spinResult = Reels();
-    fruits = spinResult[0] + " - " + spinResult[1] + " - " + spinResult[2];
-    $("div#result>p").text(fruits);
-    determineWinnings();
-    turn++;
-    showPlayerStats();
-
-    stage.removeChild(spinButton);
-    stage.addChild(spinClick);
-    spinClick.x = 350;
-    spinClick.y = 420;
-    clickedSpin = true;
+    playSpinAnim = true;
+    
 }
 
 function handleTick() {
@@ -276,6 +269,41 @@ function handleTick() {
     displayWins.text = "Wins:" + winNumber;
     displayLosses.text = "Losses:" + lossNumber;
     displayJackpot.text = "Jackpot:" + jackpot;
+
+    if (playSpinAnim) {
+        animTimer += 1;
+        stage.addChild(spinAnim[0]);
+        stage.addChild(spinAnim[1]);
+        stage.addChild(spinAnim[2]);
+        spinAnim[0].x = 60;
+        spinAnim[0].y = 225;
+
+        spinAnim[1].x = 170;
+        spinAnim[1].y = 225;
+
+        spinAnim[2].x = 280;
+        spinAnim[2].y = 225;
+
+        if (animTimer > 20) {
+            stage.removeChild(spinAnim[0]);
+            stage.removeChild(spinAnim[1]);
+            stage.removeChild(spinAnim[2]);
+
+            spinResult = Reels();
+            determineWinnings();
+            turn++;
+            showPlayerStats();
+
+            stage.removeChild(spinButton);
+            stage.addChild(spinClick);
+            spinClick.x = 350;
+            spinClick.y = 420;
+            clickedSpin = true;
+
+            playSpinAnim = false;
+            animTimer = 0;
+        }
+    }
 
     if (playerBet > 0 && playerMoney > 0) {
         spinButton.addEventListener("click", handleClick);
@@ -301,38 +329,41 @@ function handleTick() {
             clickedSpin = false;
         }
     }
-    else if (clickedBetMax)
+    else if (clickedBetMax) {
         timer += 1;
 
-    if (timer > 20) {
-        stage.removeChild(betMaxClick);
-        stage.addChild(betMaxButton);
-        betMaxButton.x = 150;
-        betMaxButton.y = 420;
-        timer = 0;
-        clickedBetMax = false;
+        if (timer > 20) {
+            stage.removeChild(betMaxClick);
+            stage.addChild(betMaxButton);
+            betMaxButton.x = 150;
+            betMaxButton.y = 420;
+            timer = 0;
+            clickedBetMax = false;
+        }
     }
-    else if (clickedBetOne)
+    else if (clickedBetOne) {
         timer += 1;
 
-    if (timer > 20) {
-        stage.removeChild(betOneClick);
-        stage.addChild(betOneButton);
-        betOneButton.x = 100;
-        betOneButton.y = 420;
-        timer = 0;
-        clickedBetOne = false;
+        if (timer > 20) {
+            stage.removeChild(betOneClick);
+            stage.addChild(betOneButton);
+            betOneButton.x = 100;
+            betOneButton.y = 420;
+            timer = 0;
+            clickedBetOne = false;
+        }
     }
-    else if (clickedReset)
+    else if (clickedReset) {
         timer += 1;
 
-    if (timer > 20) {
-        stage.removeChild(resetClick);
-        stage.addChild(resetButton);
-        resetButton.x = 50;
-        resetButton.y = 422;
-        timer = 0;
-        clickedReset = false;
+        if (timer > 20) {
+            stage.removeChild(resetClick);
+            stage.addChild(resetButton);
+            resetButton.x = 50;
+            resetButton.y = 422;
+            timer = 0;
+            clickedReset = false;
+        }
     }
     stage.update();
 }
