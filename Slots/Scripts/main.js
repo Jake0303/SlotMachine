@@ -50,21 +50,24 @@ var grapeImage = [new createjs.Bitmap("./img/grape.jpg"), new createjs.Bitmap(".
 var orangeImage = [new createjs.Bitmap("./img/orange.jpg"), new createjs.Bitmap("./img/orange.jpg"), new createjs.Bitmap("./img/orange.jpg")];
 var sevenImage = [new createjs.Bitmap("./img/seven.jpg"), new createjs.Bitmap("./img/seven.jpg"), new createjs.Bitmap("./img/seven.jpg")];
 //UI Text
-var displayBet = new createjs.Text("Bet:" + playerBet, "16px Arial", "#ff7700");
-var displayMoney = new createjs.Text("Cash:" + playerMoney, "16px Arial", "#ff7700");
-var displayWins = new createjs.Text("Wins:" + winNumber, "16px Arial", "#ff7700");
-var displayLosses = new createjs.Text("Losses:" + lossNumber, "16px Arial", "#ff7700");
-var displayJackpot = new createjs.Text("Jackpot:" + jackpot, "16px Arial", "#ff7700");
+var displayBet = new createjs.Text("Bet:$" + playerBet, "18px Arial", "#ff0000");
+var displayMoney = new createjs.Text("Cash:$" + playerMoney, "18px Arial", "#ff0000");
+var displayWins = new createjs.Text("Wins:" + winNumber, "18px Arial", "#ff0000");
+var displayLosses = new createjs.Text("Losses:" + lossNumber, "18px Arial", "#ff0000");
+var displayJackpot = new createjs.Text("Jackpot:$" + jackpot, "18px Arial", "#ff0000");
+var backgroundText = [new createjs.Bitmap("./img/textbackground.png"), new createjs.Bitmap("./img/textbackground.png"), new createjs.Bitmap("./img/textbackground.png"), new createjs.Bitmap("./img/textbackground.png"), new createjs.Bitmap("./img/textbackground.png")];
 
 var spinAnim = [new createjs.Bitmap("./img/spinanim.gif"), new createjs.Bitmap("./img/spinanim.gif"), new createjs.Bitmap("./img/spinanim.gif")];
 var spinAnim2 = [new createjs.Bitmap("./img/spinanim2.gif"), new createjs.Bitmap("./img/spinanim2.gif"), new createjs.Bitmap("./img/spinanim2.gif")];
+var spinAnim3 = [new createjs.Bitmap("./img/spinanim3.gif"), new createjs.Bitmap("./img/spinanim3.gif"), new createjs.Bitmap("./img/spinanim3.gif")];
+
 //SFX
 var ambience = new Audio('./sounds/ambience_casino-stephan_schutze-1391090820.mp3');
 var winSound = new Audio('./sounds/casino_slot_machine_bell_or_alarm_ring_win_jackpot_loops_.mp3');
 var buttonPush = new Audio('./sounds/buttonclick.mp3');
 var reelSpin = new Audio('./sounds/casino_slot_machine_lever_pull_and_icons_spin.mp3');
 
-var clickedBetMax = false, clickedBetOne = false, clickedReset = false, clickedSpin = false, playSpinAnim = false;
+var clickedBetMax = false, clickedBetOne = false, clickedReset = false, clickedSpin = false, playSpinAnim = false, playJackpotAnim = false;
 var timer = 0, animTimer = 0;
 //Called when the page is loaded
 function init() {
@@ -85,6 +88,8 @@ function init() {
         orangeImage[i].scaleX = 0.8;
         orangeImage[i].scaleY = 0.8;
     }
+    //Hide the jackpot animation unless the player wins it
+    $('#jackpotWin').hide();
     //Play our looping ambience music and enable hovering
     playAmbience();
     stage.enableMouseOver(20);
@@ -98,26 +103,43 @@ function init() {
     stage.addChild(reel1);
     stage.addChild(reel2);
     stage.addChild(reel3);
+    for(var i = 0; i < 5;i++)
+    {
+        stage.addChild(backgroundText[i]);
+        backgroundText[i].scaleX = 1.2;
+        backgroundText[i].scaleY = 1.2;
+    }
     stage.addChild(displayBet);
     stage.addChild(displayMoney);
     stage.addChild(displayWins);
     stage.addChild(displayLosses);
     stage.addChild(displayJackpot);
     //Position our children
-    displayBet.x = 60;
-    displayBet.y = 80;
+    backgroundText[0].x = 49;
+    backgroundText[0].y = 55;
+    displayBet.x = 51;
+    displayBet.y = 56;
 
-    displayMoney.x = 275;
-    displayMoney.y = 80;
+    backgroundText[1].x = 255;
+    backgroundText[1].y = 55;
+    displayMoney.x = 257;
+    displayMoney.y = 56;
 
-    displayWins.x = 60;
-    displayWins.y = 100;
+    backgroundText[2].x = 49;
+    backgroundText[2].y = 80;
+    displayWins.x = 51;
+    displayWins.y = 81;
 
-    displayLosses.x = 275;
-    displayLosses.y = 100;
+    backgroundText[3].x = 255;
+    backgroundText[3].y = 80;
+    displayLosses.x = 257;
+    displayLosses.y = 81;
 
-    displayJackpot.x = 170;
-    displayJackpot.y = 125;
+    backgroundText[4].x = 150;
+    backgroundText[4].y = 112;
+    backgroundText[4].scaleX = 1.5;
+    displayJackpot.x = 152;
+    displayJackpot.y = 113;
 
     reel1.x = 60;
     reel1.y = 225;
@@ -284,36 +306,41 @@ function init() {
 function handleClick() {
     buttonPush.volume = 0.5;
     buttonPush.play();
+    stage.removeChild(spinButton);
+    stage.addChild(spinClick);
+    spinClick.x = 350;
+    spinClick.y = 420;
     reelSpin.play();
+    clickedSpin = true;
     playSpinAnim = true;
 }
 //handleTick function, called every second
 function handleTick() {
     //Show the players stats
-    displayBet.text = "Bet:" + playerBet;
-    displayMoney.text = "Cash:" + playerMoney;
+    displayBet.text = "Bet:$" + playerBet;
+    displayMoney.text = "Cash:$" + playerMoney;
     displayWins.text = "Wins:" + winNumber;
     displayLosses.text = "Losses:" + lossNumber;
-    displayJackpot.text = "Jackpot:" + jackpot;
+    displayJackpot.text = "Jackpot:$" + jackpot;
     //This handles our spin reel animation, switch images constantly
     if (playSpinAnim) {
         animTimer += 1;
         
-        if (animTimer % 2 == 0) {
+        if (animTimer % 3 == 0) {
             stage.addChild(spinAnim[0]);
             stage.addChild(spinAnim[1]);
             stage.addChild(spinAnim[2]);
 
-            spinAnim[0].x = 68;
+            spinAnim[0].x = 65;
             spinAnim[0].y = 235;
 
-            spinAnim[1].x = 178;
+            spinAnim[1].x = 175;
             spinAnim[1].y = 235;
 
-            spinAnim[2].x = 288;
+            spinAnim[2].x = 285;
             spinAnim[2].y = 235;
         }
-        else {
+        else if(animTimer % 2 == 0){
             stage.addChild(spinAnim2[0]);
             stage.addChild(spinAnim2[1]);
             stage.addChild(spinAnim2[2]);
@@ -327,6 +354,20 @@ function handleTick() {
             spinAnim2[2].x = 285;
             spinAnim2[2].y = 235;
         }
+        else {
+            stage.addChild(spinAnim3[0]);
+            stage.addChild(spinAnim3[1]);
+            stage.addChild(spinAnim3[2]);
+
+            spinAnim3[0].x = 65;
+            spinAnim3[0].y = 235;
+
+            spinAnim3[1].x = 175;
+            spinAnim3[1].y = 235;
+
+            spinAnim3[2].x = 285;
+            spinAnim3[2].y = 235;
+        }
         //Once a couple of seconds have passed, show the player the result of the spin
         if (animTimer > 80) {
             stage.removeChild(spinAnim[0]);
@@ -335,17 +376,14 @@ function handleTick() {
             stage.removeChild(spinAnim2[0]);
             stage.removeChild(spinAnim2[1]);
             stage.removeChild(spinAnim2[2]);
+            stage.removeChild(spinAnim3[0]);
+            stage.removeChild(spinAnim3[1]);
+            stage.removeChild(spinAnim3[2]);
 
             spinResult = Reels();
             determineWinnings();
             turn++;
             showPlayerStats();
-
-            stage.removeChild(spinButton);
-            stage.addChild(spinClick);
-            spinClick.x = 350;
-            spinClick.y = 420;
-            clickedSpin = true;
 
             playSpinAnim = false;
             animTimer = 0;
@@ -412,6 +450,22 @@ function handleTick() {
             clickedReset = false;
         }
     }
+    //Play a jackpot animation if the player wins one.
+    if (playJackpotAnim)
+    {
+        $('#jackpotWin').show();
+        $('#jackpotWin').css('float', 'right');
+        $('#jackpotWin').css('margin-right','300px');
+
+        timer += 1;
+        if(timer > 100)
+        {
+            $('#jackpotWin').hide();
+            timer = 0;
+            playJackpotAnim = false;
+        }
+
+    }
     stage.update();
 }
 
@@ -456,10 +510,10 @@ function resetAll() {
 /* Check to see if the player won the jackpot */
 function checkJackPot() {
     /* compare two random values */
-    var jackPotTry = Math.floor(Math.random() * 51 + 1);
-    var jackPotWin = Math.floor(Math.random() * 51 + 1);
+    var jackPotTry = Math.floor(Math.random() * 10 + 1);
+    var jackPotWin = Math.floor(Math.random() * 10 + 1);
     if (jackPotTry == jackPotWin) {
-        alert("You Won the $" + jackpot + " Jackpot!!");
+        playJackpotAnim = true;
         winSound.volume = 0.5;
         winSound.play();
         playerMoney += jackpot;
@@ -769,7 +823,7 @@ $("#spinButton").click(function () {
     else {
         alert("Please enter a valid bet amount");
     }
-
+    
 });
 
 //When the player clicks the big red X, end the game

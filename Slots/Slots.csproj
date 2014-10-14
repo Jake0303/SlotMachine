@@ -64,10 +64,14 @@
     <Content Include="img\betmaxglossy.png" />
     <Content Include="img\betoneglossy.png" />
     <Content Include="img\close.png" />
+    <Content Include="img\jackpot.gif" />
     <Content Include="img\resetglossy.png" />
     <Content Include="img\spinanim.gif" />
+    <Content Include="img\spinanim2 - Copy.gif" />
     <Content Include="img\spinanim2.gif" />
+    <Content Include="img\spinanim3.gif" />
     <Content Include="img\spinglossy.png" />
+    <Content Include="img\textbackground.png" />
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <Content Include="obj\Debug\SlotMachineAssignment2.csprojResolveAssemblyReference.cache" />
     <Content Include="Scripts\app.js.map" />

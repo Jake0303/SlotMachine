@@ -1,5 +1,9 @@
-﻿#closeButton
+﻿/*Main.css*/
+#closeButton
 {
-    position:absolute;
-    
+    position:absolute;    
+}
+#jackpotWin
+{
+    display:none;
 }
