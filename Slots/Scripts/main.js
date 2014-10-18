@@ -66,8 +66,10 @@ var ambience = new Audio('./sounds/ambience_casino-stephan_schutze-1391090820.mp
 var winSound = new Audio('./sounds/casino_slot_machine_bell_or_alarm_ring_win_jackpot_loops_.mp3');
 var buttonPush = new Audio('./sounds/buttonclick.mp3');
 var reelSpin = new Audio('./sounds/casino_slot_machine_lever_pull_and_icons_spin.mp3');
-
-var clickedBetMax = false, clickedBetOne = false, clickedReset = false, clickedSpin = false, playSpinAnim = false, playJackpotAnim = false;
+var ohBabyATriple = new Audio('./sounds/ohbabyatriple.mp3');
+var ohYea = new Audio('./sounds/ohyea.mp3');
+//Logic variables
+var clickedBetMax = false, clickedBetOne = false, clickedReset = false, clickedSpin = false, playSpinAnim = false, playJackpotAnim = false, checkTriple = false;
 var timer = 0, animTimer = 0;
 //Called when the page is loaded
 function init() {
@@ -103,8 +105,7 @@ function init() {
     stage.addChild(reel1);
     stage.addChild(reel2);
     stage.addChild(reel3);
-    for(var i = 0; i < 5;i++)
-    {
+    for (var i = 0; i < 5; i++) {
         stage.addChild(backgroundText[i]);
         backgroundText[i].scaleX = 1.2;
         backgroundText[i].scaleY = 1.2;
@@ -245,22 +246,15 @@ function init() {
         stage.update();
     });
     betMaxButton.addEventListener("click", function () {
-        if (playerBet <= playerMoney) {
+        //Make sure the player has enough money to bet
+        if (playerBet + 10 <= playerMoney) {
             buttonPush.volume = 0.5;
             buttonPush.play();
             stage.removeChild(betMaxButton);
             stage.addChild(betMaxClick);
             betMaxClick.x = 150;
             betMaxClick.y = 420;
-            //Without this check, the bet would be added to any previous bets resulting
-            //in money the player did not have
-            if (playerBet > 0) {
-                playerBet = 0;
-                playerBet += playerMoney;
-            }
-            else {
-                playerBet += playerMoney;
-            }
+            playerBet += 10;
             clickedBetMax = true;
         }
         else {
@@ -286,7 +280,7 @@ function init() {
         stage.update();
     });
     betOneButton.addEventListener("click", function () {
-        if (playerBet <= playerMoney) {
+        if (playerBet + 1 <= playerMoney) {
             buttonPush.volume = 0.5;
             buttonPush.play();
             stage.removeChild(betOneButton);
@@ -300,7 +294,7 @@ function init() {
             alert('You cannot bet more than what you have');
         }
     });
-    
+
 }
 //handleClick function, called when we press the spin button
 function handleClick() {
@@ -325,7 +319,7 @@ function handleTick() {
     //This handles our spin reel animation, switch images constantly
     if (playSpinAnim) {
         animTimer += 1;
-        
+
         if (animTimer % 3 == 0) {
             stage.addChild(spinAnim[0]);
             stage.addChild(spinAnim[1]);
@@ -340,11 +334,11 @@ function handleTick() {
             spinAnim[2].x = 285;
             spinAnim[2].y = 235;
         }
-        else if(animTimer % 2 == 0){
+        else if (animTimer % 2 == 0) {
             stage.addChild(spinAnim2[0]);
             stage.addChild(spinAnim2[1]);
             stage.addChild(spinAnim2[2]);
-            
+
             spinAnim2[0].x = 65;
             spinAnim2[0].y = 235;
 
@@ -381,6 +375,7 @@ function handleTick() {
             stage.removeChild(spinAnim3[2]);
 
             spinResult = Reels();
+            checkTriple = true;
             determineWinnings();
             turn++;
             showPlayerStats();
@@ -451,23 +446,38 @@ function handleTick() {
         }
     }
     //Play a jackpot animation if the player wins one.
-    if (playJackpotAnim)
-    {
+    if (playJackpotAnim) {
         $('#jackpotWin').show();
         $('#jackpotWin').css('float', 'right');
-        $('#jackpotWin').css('margin-right','300px');
+        $('#jackpotWin').css('margin-right', '300px');
 
         timer += 1;
-        if(timer > 100)
-        {
+        if (timer > 100) {
             $('#jackpotWin').hide();
             timer = 0;
             playJackpotAnim = false;
         }
 
     }
+    //Play Oh Baby a triple sound effect if you get three in a row.
+    if (checkTriple) {
+        if (spinResult[0] != null) {
+            if (spinResult[0] != 'blank') {
+                if (spinResult[0] == spinResult[1] && spinResult[1] == spinResult[2]) {
+                    ohBabyATriple.play();
+                    timer += 1;
+                    if (timer > 165) {
+                        ohBabyATriple.pause();
+                        ohYea.play();
+                        timer = 0;
+                        checkTriple = false;
+                    }
+               }
+            }
+        }
+    }
     stage.update();
-}
+}//end tick
 
 /* Utility function to show Player Stats */
 function showPlayerStats() {
@@ -510,8 +520,8 @@ function resetAll() {
 /* Check to see if the player won the jackpot */
 function checkJackPot() {
     /* compare two random values */
-    var jackPotTry = Math.floor(Math.random() * 10 + 1);
-    var jackPotWin = Math.floor(Math.random() * 10 + 1);
+    var jackPotTry = Math.floor(Math.random() * 15 + 1);
+    var jackPotWin = Math.floor(Math.random() * 15 + 1);
     if (jackPotTry == jackPotWin) {
         playJackpotAnim = true;
         winSound.volume = 0.5;
@@ -823,7 +833,7 @@ $("#spinButton").click(function () {
     else {
         alert("Please enter a valid bet amount");
     }
-    
+
 });
 
 //When the player clicks the big red X, end the game
